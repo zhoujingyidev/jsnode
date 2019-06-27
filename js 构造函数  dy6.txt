@@ -1,0 +1,404 @@
+
+
+*************************  Object构造函数  ***********************
+
+
+
+系统给的Object  自己定义构造函数
+
+语法：var 变量名 = new 构造函数名();
+针对：Object创建对象，有简写格式
+语法：var 变量名 = {};  // new Object()
+语法：var 变量名 = {key:value,key:value}; 
+
+
+语法：
+对象.方法名 = 匿名函数
+      run:function(){
+        console.log('英雄在跑...');
+      }
+
+ys.run();   	调用方法名 语法：对象.方法名
+
+
+var ys = {
+      name:'亚瑟',
+      age:10,
+      run:function(){
+        console.log('英雄在跑...');
+      }
+    };
+    console.log(ys);
+
+console.log(ys.name); 读取属性名 语法：对象.属性名
+
+
+
+
+
+*************************对象的操作****************************
+
+
+var ys = { };
+
+ys.age = 10;		对象名.key = value;	 还有下面那种
+
+ys['name'] = '亚瑟';	对象名['key'] = value;	 两种设置方法
+
+
+输出：
+console.log(ys['age']);		对象名['key']；
+
+console.log(ys.age);		对象名.key
+
+
+
+
+
+
+
+**********************移除对象的属性和方法********************
+
+
+ var obj = {
+      name:'亚瑟',
+      age:10,
+      gender:'男'
+      };
+
+console.log(obj);
+
+
+
+delete obj.name;	【移除某个成员】
+
+delete obj['age'];	【移除某个成员】
+
+
+
+
+
+
+
+**********************检测对象的成员是否存在********************
+
+true存在，false不存在
+
+ var obj = {
+      name:'亚瑟',
+      age:10,
+      gender:'男'
+      };
+
+console.log(obj);
+
+
+
+语法：对象名.hasOwnProperty('key'); 返回布尔值
+
+
+var r = obj.hasOwnProperty('name');	// true
+console.log(r);
+
+
+
+
+
+
+
+
+*************************遍历对象成员***************************
+
+    var obj = {
+      name: '亚瑟',
+      age: 10,
+      gender: '男',
+      height: 200,
+      run:function(){
+        console.log('跑~~~~')
+      }
+    };
+
+遍历对象的成员   遍历对象：for-in循环
+
+for(var key in obj) {
+  console.log(key + '------>' + obj[key])
+}
+
+
+
+
+
+
+
+*************************监测对象类型****************************
+
+语法：对象 instanceof 构造函数名
+
+var obj = new Object();
+
+
+obj是否是Object类型
+console.log( obj  instanceof Object); // true
+
+
+obj是否是Array类型
+console.log( obj  instanceof Array); // false
+
+
+
+
+
+*****************************************************************
+****************************自定义函数***************************
+*****************************************************************
+
+
+
+与函数语法基本一样，只不过加nuw调用
+
+
+规范：单词首字母大写→帕斯卡命名
+
+    创建狗类
+    function Dog() {
+
+    }
+
+    创建英雄类
+    function Hero() {
+
+    }
+
+
+    创建狗对象
+    var wc = new Dog();
+    var xtq = new Dog();
+
+
+    创建英雄对象
+    var lb = new Hero();
+    var aql = new Hero();
+
+    检测
+    console.log(lb instanceof Hero);
+    console.log(wc instanceof Dog);
+
+    lb.sayHi();
+    wc.sayHi();
+
+
+
+**********************自定义函数创建对象************************
+ 
+   function Hero(n,a,i) {
+     // this在构造函数中，表示当前创建的对象
+     this.name = n;
+     this.age = a;
+     this.iQ = i;
+     this.run = function(){
+      console.log('跑~~~~');
+     };
+
+
+  var lb = new Hero('鲁班',100,250);
+  var blsy = new Hero('百里守约',10,249);
+
+  lb.sayHi();
+
+
+
+
+
+********************  new关键字的执行过程  *********************
+
+   function Hero(n,a,i) {
+     this.name = n;
+     this.age = a;
+     this.iQ = i;
+     this.run = function(){
+      console.log('跑~~~~');
+     };
+
+this在构造函数中，表示当前创建的对象
+this表示谁？作用是什么？
+向对象中添加属性和方法（搬运工）
+
+
+
+
+new关键字的执行过程：
+
+1. new 向内存申请一块空间存放将要创建的对象
+
+2. this关键字会指向当前申请的内存空间
+
+3. 通过this向内存空间中存放属性和方法
+
+4. 将 已经拥有属性和方法 返回给外部的变量名
+
+
+****************** 构造函数和普通函数的区别 ******************
+
+
+var lb = Hero();	直接调用：普通函数
+
+var lb = new Hero();    使用new关键字调用：构造函数
+
+
+普通函数：驼峰命名法
+构造函数：帕斯卡命名法
+
+相同：都是函数
+
+
+
+
+    function Hero(name, age) {
+      this.name = name;
+      this.age = age;
+      this.sayHi = function () {
+        console.log('我叫' + this.name + '今年' + this.age + '岁');
+      };
+    }
+
+    var lb = new Hero('鲁班',100);
+    lb.sayHi();
+
+    var hy = new Hero('后裔',200);
+    hy.sayHi();
+
+
+
+************************ 内置对象 *****************************
+
+
+   **********************Math对象***************************
+
+Math本身就是一个对象， 不需要再通过构造函数去创建，该对象中集合
+
+了很多关于数学运算的方法。也就是说，对于后期的一些复杂一些的数学
+
+运算，不需要自己动手去运算，直接调用Math对象中的方法实现即可。
+
+
+Math对象常用属性和方法
+
+
+
+
+Math.abs(数字);			     获取一个数字的绝对值
+
+Math.round(数字);   		     四舍五入
+
+Math.PI;    			     π
+
+Math.ceil(数字);		     向上取整
+
+Math.floor(数字); 		     向下取整
+Math.random();    		     随机数[0,1);
+Math.max(数字,数字,数字...);  	     求最大数
+
+Math.min(数字,数字,数字...);         求最小数
+
+
+
+
+求最大数
+var r = Math.max(10,2,40,3,5,7,6,9,8);
+console.log(r);
+ 
+
+随机数（0,1);
+var r = Math.random();
+console.log(r);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

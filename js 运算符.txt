@@ -1,0 +1,324 @@
+***************************逻辑运算符**********************
+
+运算结果为布尔值
+
+// 逻辑与（而且）
+console.log(1>2 && 3<4);   // false
+console.log(1<2 && 3<4);   // true
+
+
+// 逻辑或（或者）
+console.log(1>2 || 3<4);   // true
+console.log(1<2 || 3<4);   // true
+console.log(1>2 || 3>4);   // false
+
+
+// 逻辑非（就是取反值）
+console.log(!true); // false
+console.log(!false); // true
+
+
+
+***************************一元运算符****************************
+
+前置自增  语法：++变量
+特点：变量自身先加1，再把结果返回到表达式中
+
+var b = 1;
+var sum = ++b + 1;
+console.log(sum);// 结果:3
+console.log(b);  // 结果：2
+
+
+后置自增  语法：变量++
+特点：先返回结果到表达式中，变量再自身加1
+
+var b = 1;
+var sum = b++ + 1;
+console.log(sum);// 结果:2
+console.log(b);  // 结果：2
+
+
+前置自减  语法：--变量
+特点：变量自身先减1，再把结果返回到表达式中
+
+var b = 1;
+var sum = --b + 1;
+console.log(sum);// 结果:1
+console.log(b);  // 结果：0
+
+
+后置自减  语法：变量--
+特点：先返回结果到表达式中，变量再自身减1
+
+var b = 1;
+var sum = b-- + 1;
+console.log(sum);// 结果:2
+console.log(b);  // 结果：0
+
+
+****************************运算符优先级*************************
+
+1. () 小括号
+2. ++、--、! 一元运算符
+3. +、-、*、/、%	算术运算符
+4. >、 <、 >=、 <=、 ==、 !=、 ===、 !==、 比较运算符（关系运算符）
+5. &&、 || 逻辑运算符， 先&&后||
+6. =、 +=、-=、*=、/=、%=
+
+
+**************************强制转换********************************
+
+1.转字串符    转换方式：转换后，会返回新的结果
+变量.toString();
+
+代码：
+var a = 10;
+var result = a.toString();
+console.log(result); 		// 变为'10'
+console.log(typeof result); 	// string 检测结果字符串
+
+
+
+String(其他数据);
+
+代码：
+var a = 10;
+var result = String(a);
+console.log(result); 		// '10'
+console.log(typeof result);     // string
+
+
+// 注意：undefined和null无法调用toString() 
+var result = b.toString(); // 报错
+var result = c.toString(); // 报错
+
+
+*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+
+
+
+2.转数字     转换方式：转换后，会返回新的结果
+
+Number(其他数据);
+
+parseInt(其他数据)；转换成整数
+
+parseFloat(其他数据)；转换成小数
+
+
+
+代码：
+//【Number(其他数据)】
+// 数值字符串转数字
+console.log(Number('123')); 		// 123;
+console.log(typeof Number('123'));      // number
+
+
+// 非数值字符串转数字
+console.log(Number('abc123')); 		// NaN;
+console.log(typeof Number('abc123'));   // number
+
+
+// 布尔值转数字
+console.log(Number(true));  	// 1
+console.log(Number(false)); 	// 0
+
+
+// undefined 和 null 转数字
+console.log(Number(undefined));   // NaN
+console.log(Number(null)); 	  // 0
+
+
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+
+3.转布尔
+
+空字符串''、undefined、null、0转换布尔值是false
+
+/*/*/*/*/  其他转换布尔值是true  /*/*/*/*/*/
+
+Boolean(其他数据)
+
+代码：
+
+console.log(Boolean('')); 	// false； 
+注意''是空字符串，不是空格 
+
+console.log(Boolean(null));	// false
+console.log(Boolean(0));	// false
+console.log(Boolean(undefined));// false
+
+
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+
+3.隐式转换（自动转换）
+
+任何数据和字符串 ***相加**** 都会自动转换为String类型。
+
+01.转字符串
+var result = 1 + '1';       // 11  字符串和字符串拼接
+console.log(result);
+console.log(typeof result); // string
+
+
+
+
+02.转数字
+- 任何数据在做***算术运算时***（除了和字符串相加外）或
+任何数据在和数字比较时，其他数据都会自动转换为Number类型。
+
+
+- 注意：
+任何数据和NaN做算术运算，结果始终都是NaN
+
+
+console.log(1-'1'); 	// 0
+console.log(1 + true);  // 2
+console.log(1 - 'a'); 	// NaN
+
+
+比较运算
+console.log('10' > 9 );Number ('10')- 10 > 9
+
+
+03.转布尔
+在取反运算时，其他数据会自动转换为布尔值
+在分支结构或循环结构的条件判断中
+其他数据会自动转换成布尔值（后续演示...）
+
+
+
+console.log(!1);	 // false;
+console.log(!'') 	 // true;
+
+
+
+
+**************************************************************
+**************************分支结构****************************
+
+
+******************* if分支 ************************
+
+var age = 19;
+if（条件表达方式）{
+			//要执行的代码块
+			}
+
+if（age>18）{
+	document.write(xxx);
+	}  else{
+	document.write(xxx);
+		}
+
+
+
+
+************************ if-else分支 ************************
+
+var age = 19;
+if（条件表达方式）{
+			//要执行的代码块
+			}
+
+if（age>18）{
+	document.write(xxx);
+	}  if else{
+	document.write(xxx);
+	}  if else{
+	document.write(xxx);
+	}  else{
+	document.write(xxx);
+	}
+
+
+
+
+*************************** switch ***************************
+
+switch 开关 case 情况
+
+与if else 很像 只不过是做等值判断
+switch适合做等值判断，等值判断推荐使用，执行效率高
+
+1.因为num promtp 输出类型为字符串，必须转换为数字，或者把1-7
+转为字符串
+
+2.case具有穿透性，break会结束switch结构
+不添加会执行对应值下面所有
+
+
+var num = prompt('请输入1-7');
+switch (Number (num)) {
+    case 1:
+        alert('星期一');
+        break;
+    case 2:
+        alert('星期二');
+        break;
+    case 3:
+        alert('星期三');
+        break;
+    case 4:
+        lert('星期四');
+        break;
+    case 5:
+        alert('星期五');
+        break;
+    case 6:
+    case 7:
+        alert('周末双休');
+        break;
+    default:
+        alert('不能大于8')
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
